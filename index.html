@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -11,12 +11,15 @@
             margin: 0;
             background-color: #f5f5f5;
             color: #333;
+            scroll-behavior: smooth;
         }
         header {
             background: url('church-placeholder.jpg') center/cover no-repeat;
             color: white;
-            padding: 100px 20px;
+            padding: 100px 20px 140px 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         header h1 {
             font-size: 2.5rem;
@@ -27,10 +30,46 @@
             max-width: 600px;
             margin: auto;
         }
+        nav.navbar {
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        nav.navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav.navbar li {
+            /* rien de particulier ici */
+        }
+        nav.navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        nav.navbar a:hover {
+            background-color: #388e3c;
+        }
         section {
-            padding: 40px 20px;
+            padding: 60px 20px 40px 20px;
             max-width: 1000px;
             margin: auto;
+            margin-top: 80px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .section-title {
             font-size: 2rem;
@@ -46,23 +85,95 @@
             height: 300px;
             border: none;
             margin-top: 20px;
+            border-radius: 10px;
         }
         footer {
             background: #2e2e2e;
             color: white;
             text-align: center;
             padding: 20px;
+            margin-top: 30px;
+        }
+        /* Galerie photos */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+            gap: 15px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            height: 140px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        /* Formulaire de contact simple */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: auto;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #388e3c;
+        }
+        /* Responsive adjustments */
+        @media(max-width: 600px) {
+            nav.navbar ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            section {
+                margin-top: 100px;
+                padding: 40px 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="accueil">
         <h1>Eglise Adventiste du Septième Jour</h1>
         <p>Communauté de Garoua-Centre</p>
         <p><em>"Apocalypse 14:6-9"</em></p>
     </header>
 
-    <section>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#horaires">Horaires</a></li>
+            <li><a href="#evenements">Événements</a></li>
+            <li><a href="#sermons">Sermons</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#dons">Dons</a></li>
+        </ul>
+    </nav>
+
+    <section id="apropos">
+        <h2 class="section-title">À propos de notre église</h2>
+        <p>Bienvenue à l'Église Adventiste du Septième Jour - Communauté de Garoua-Centre. Nous sommes une communauté engagée dans la foi, la prière et la louange. Notre mission est de partager l'amour de Dieu avec tous.</p>
+    </section>
+
+    <section id="horaires">
         <h2 class="section-title">Horaires des Cultes</h2>
         <div class="hours-list">
             <p><strong>Mercredi :</strong> 17h30 - 18h30 (Prière)</p>
@@ -71,13 +182,59 @@
         </div>
     </section>
 
-    <section>
+    <section id="evenements">
+        <h2 class="section-title">Événements</h2>
+        <ul>
+            <li>Dimanche 5 Juin : Culte spécial de Pentecôte</li>
+            <li>Samedi 18 Juin : Concert de louange</li>
+            <li>Mercredi 29 Juin : Soirée prière spéciale</li>
+        </ul>
+    </section>
+
+    <section id="sermons">
+        <h2 class="section-title">Sermons</h2>
+        <p>Retrouvez nos sermons audio et vidéo sur notre chaîne YouTube et notre podcast.</p>
+        <ul>
+            <li><a href="#">Sermon du Sabbat 01 Mai 2025</a></li>
+            <li><a href="#">Sermon du Mercredi 22 Avril 2025</a></li>
+            <li><a href="#">Sermon du Vendredi 10 Avril 2025</a></li>
+        </ul>
+    </section>
+
+    <section id="galerie">
+        <h2 class="section-title">Galerie Photos</h2>
+        <div class="gallery">
+            <img src="church1.jpg" alt="Photo de l'église 1">
+            <img src="church2.jpg" alt="Photo de l'église 2">
+            <img src="church3.jpg" alt="Photo de l'église 3">
+        </div>
+    </section>
+
+    <section id="contact">
         <h2 class="section-title">Nous Contacter</h2>
         <div class="contact-info">
             <p><strong>Adresse :</strong> Rue Stade Omnisport Roumdé-Adjia, Face Daoula-Hôtel</p>
             <p><strong>Téléphone :</strong> +237 697 81 84 73</p>
         </div>
         <iframe src="https://www.google.com/maps?q=Stade+Omnisport+Roumd%C3%A9-Adjia,+Garoua,+Cameroun&output=embed"></iframe>
+
+        <h3>Envoyez-nous un message</h3>
+        <form action="#" method="POST">
+            <input type="text" name="name" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre email" required>
+            <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+
+    <section id="dons">
+        <h2 class="section-title">Faire un don</h2>
+        <p>Votre générosité nous aide à continuer notre mission. Vous pouvez faire un don via :</p>
+        <ul>
+            <li>Virement bancaire : Compte XYZ, Banque ABC</li>
+            <li>Mobile Money : 237 697 818 473</li>
+            <li>Chèque à l’ordre de "Eglise Adventiste de Garoua-Centre"</li>
+        </ul>
     </section>
 
     <footer>
