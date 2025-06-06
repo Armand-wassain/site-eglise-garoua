@@ -1,244 +1,929 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eglise Adventiste de Garoua-Centre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Église Adventiste du Septième Jour - Garoua-Centre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #2c5e2e;
+            --primary-dark: #1e421f;
+            --secondary: #e0b854;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0;
             background-color: #f5f5f5;
             color: #333;
             scroll-behavior: smooth;
+            line-height: 1.6;
         }
+        
         header {
-            background: url('church-placeholder.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), url('https://images.unsplash.com/photo-1503177119275-0aa32f3a1aaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;
             color: white;
-            padding: 100px 20px 140px 20px;
+            padding: 160px 20px 140px;
             text-align: center;
             position: relative;
-            z-index: 1;
         }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--light));
+        }
+        
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
+        
         header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: auto;
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
+        
+        header .verse {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-top: 25px;
+        }
+        
         nav.navbar {
-            background-color: #4CAF50;
-            padding: 10px 20px;
+            background-color: var(--primary);
+            padding: 0 20px;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
         }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+        }
+        
         nav.navbar ul {
             list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            gap: 25px;
         }
+        
         nav.navbar li {
-            /* rien de particulier ici */
+            position: relative;
         }
+        
         nav.navbar a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1rem;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 4px;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
+            display: block;
         }
+        
         nav.navbar a:hover {
-            background-color: #388e3c;
+            background-color: var(--primary-dark);
+            color: var(--secondary);
         }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
         section {
-            padding: 60px 20px 40px 20px;
+            padding: 60px 30px;
             max-width: 1000px;
-            margin: auto;
-            margin-top: 80px;
+            margin: 40px auto;
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
         }
+        
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            border-left: 5px solid #4CAF50;
-            padding-left: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            color: var(--primary-dark);
+            position: relative;
         }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .section-intro {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
         .hours-list, .contact-info {
             line-height: 1.8;
+            margin-bottom: 25px;
         }
+        
+        .hours-list p, .contact-info p {
+            display: flex;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .hours-list strong, .contact-info strong {
+            min-width: 120px;
+            color: var(--primary);
+        }
+        
         iframe {
             width: 100%;
-            height: 300px;
+            height: 350px;
             border: none;
-            margin-top: 20px;
+            margin: 25px 0;
             border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        
         footer {
-            background: #2e2e2e;
+            background: var(--primary-dark);
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
         }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: #e9ecef;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+        
         /* Galerie photos */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
-        .gallery img {
-            width: 100%;
+        
+        .gallery-item {
             border-radius: 8px;
-            object-fit: cover;
-            height: 140px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            height: 200px;
+            transition: var(--transition);
         }
-        /* Formulaire de contact simple */
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+        
+        /* Formulaire de contact */
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: auto;
+            gap: 20px;
+            max-width: 600px;
+            margin: 30px auto 0;
         }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
         input, textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-size: 1rem;
             resize: vertical;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
         }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(44, 94, 46, 0.1);
+        }
+        
         button {
-            background-color: #4CAF50;
+            background-color: var(--primary);
             color: white;
             border: none;
-            padding: 12px;
-            font-size: 1rem;
-            border-radius: 6px;
+            padding: 14px;
+            font-size: 1.1rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
+        
         button:hover {
-            background-color: #388e3c;
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 94, 46, 0.2);
         }
+        
+        /* Card design for events */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .event-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.05);
+        }
+        
+        .event-content {
+            padding: 20px;
+        }
+        
+        .event-date {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .event-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        
+        .event-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .event-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .event-link:hover {
+            color: var(--primary-dark);
+            gap: 12px;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
         /* Responsive adjustments */
-        @media(max-width: 600px) {
-            nav.navbar ul {
-                flex-direction: column;
-                gap: 10px;
+        @media(max-width: 900px) {
+            header {
+                padding: 140px 20px 100px;
             }
+            
+            header h1 {
+                font-size: 2.3rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media(max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav.navbar ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--primary);
+                flex-direction: column;
+                gap: 0;
+                padding: 30px 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            nav.navbar ul.active {
+                left: 0;
+            }
+            
+            nav.navbar ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav.navbar ul li a {
+                padding: 15px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media(max-width: 480px) {
+            header {
+                padding: 120px 15px 80px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
             section {
-                margin-top: 100px;
-                padding: 40px 10px;
+                padding: 40px 20px;
+                margin: 30px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
             }
         }
     </style>
 </head>
 <body>
     <header id="accueil">
-        <h1>Eglise Adventiste du Septième Jour</h1>
+        <h1>Église Adventiste du Septième Jour</h1>
         <p>Communauté de Garoua-Centre</p>
-        <p><em>"Apocalypse 14:6-9"</em></p>
+        <p class="verse"><em>"Je vis un autre ange qui volait par le milieu du ciel, ayant un Évangile éternel, pour l'annoncer aux habitants de la terre, à toute nation, à toute tribu, à toute langue, et à tout peuple."</em> — Apocalypse 14:6</p>
     </header>
 
     <nav class="navbar">
-        <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#apropos">À propos</a></li>
-            <li><a href="#horaires">Horaires</a></li>
-            <li><a href="#evenements">Événements</a></li>
-            <li><a href="#sermons">Sermons</a></li>
-            <li><a href="#galerie">Galerie</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#dons">Dons</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="#accueil" class="logo">
+                <i class="fas fa-church"></i>
+                Église Adventiste
+            </a>
+            <ul id="menu">
+                <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#apropos"><i class="fas fa-info-circle"></i> À propos</a></li>
+                <li><a href="#horaires"><i class="fas fa-clock"></i> Horaires</a></li>
+                <li><a href="#evenements"><i class="fas fa-calendar-alt"></i> Événements</a></li>
+                <li><a href="#sermons"><i class="fas fa-book-bible"></i> Sermons</a></li>
+                <li><a href="#galerie"><i class="fas fa-images"></i> Galerie</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="#dons"><i class="fas fa-hand-holding-heart"></i> Dons</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </nav>
 
-    <section id="apropos">
-        <h2 class="section-title">À propos de notre église</h2>
-        <p>Bienvenue à l'Église Adventiste du Septième Jour - Communauté de Garoua-Centre. Nous sommes une communauté engagée dans la foi, la prière et la louange. Notre mission est de partager l'amour de Dieu avec tous.</p>
-    </section>
+    <main>
+        <section id="apropos">
+            <h2 class="section-title">À propos de notre église</h2>
+            <p class="section-intro">Bienvenue à l'Église Adventiste du Septième Jour - Communauté de Garoua-Centre. Nous sommes une communauté engagée dans la foi, la prière et la louange. Notre mission est de partager l'amour de Dieu avec tous.</p>
+            
+            <div class="about-content">
+                <p>Fondée en 1995, notre église fait partie de la Fédération des Églises Adventistes du Septième Jour du Cameroun. Nous croyons en la Bible comme parole inspirée de Dieu et nous nous engageons à vivre selon ses enseignements.</p>
+                
+                <p>Nos valeurs fondamentales incluent :</p>
+                <ul>
+                    <li><strong>Communauté</strong> - Construire des relations significatives entre les membres</li>
+                    <li><strong>Service</strong> - Servir notre communauté locale et au-delà</li>
+                    <li><strong>Éducation</strong> - Développer la connaissance biblique et spirituelle</li>
+                    <li><strong>Mission</strong> - Partager l'évangile avec notre entourage</li>
+                </ul>
+                
+                <p>Rejoignez-nous chaque semaine pour des moments de louange, d'enseignement et de communion fraternelle.</p>
+            </div>
+        </section>
 
-    <section id="horaires">
-        <h2 class="section-title">Horaires des Cultes</h2>
-        <div class="hours-list">
-            <p><strong>Mercredi :</strong> 17h30 - 18h30 (Prière)</p>
-            <p><strong>Vendredi :</strong> 17h30 - 18h30 (Louange)</p>
-            <p><strong>Sabbat :</strong> 08h00 - 12h00 (Culte)</p>
-        </div>
-    </section>
+        <section id="horaires">
+            <h2 class="section-title">Horaires des Cultes</h2>
+            <div class="hours-list">
+                <p><strong>Mercredi :</strong> 17h30 - 18h30 (Réunion de prière)</p>
+                <p><strong>Vendredi :</strong> 17h30 - 18h30 (École du sabbat)</p>
+                <p><strong>Samedi :</strong> 08h00 - 12h00 (Culte d'adoration)</p>
+                <p><strong>Dimanche :</strong> 16h00 - 18h00 (Jeunesse adventiste)</p>
+            </div>
+            <p>Des études bibliques personnalisées sont également disponibles sur rendez-vous.</p>
+        </section>
 
-    <section id="evenements">
-        <h2 class="section-title">Événements</h2>
-        <ul>
-            <li>Dimanche 5 Juin : Culte spécial de Pentecôte</li>
-            <li>Samedi 18 Juin : Concert de louange</li>
-            <li>Mercredi 29 Juin : Soirée prière spéciale</li>
-        </ul>
-    </section>
+        <section id="evenements">
+            <h2 class="section-title">Événements à venir</h2>
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Culte de Pentecôte">
+                    </div>
+                    <div class="event-content">
+                        <span class="event-date">5 Juin 2025</span>
+                        <h3 class="event-title">Culte spécial de Pentecôte</h3>
+                        <p class="event-description">Rejoignez-nous pour un culte spécial célébrant la Pentecôte avec une prédication inspirante et une communion fraternelle.</p>
+                        <a href="#" class="event-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Concert de louange">
+                    </div>
+                    <div class="event-content">
+                        <span class="event-date">18 Juin 2025</span>
+                        <h3 class="event-title">Concert de louange</h3>
+                        <p class="event-description">Une soirée de louange avec nos chorales locales et des artistes invités. Ouvert à toute la communauté.</p>
+                        <a href="#" class="event-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Soirée prière">
+                    </div>
+                    <div class="event-content">
+                        <span class="event-date">29 Juin 2025</span>
+                        <h3 class="event-title">Soirée prière spéciale</h3>
+                        <p class="event-description">Une soirée dédiée à la prière collective pour les besoins de notre communauté et du monde.</p>
+                        <a href="#" class="event-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="sermons">
-        <h2 class="section-title">Sermons</h2>
-        <p>Retrouvez nos sermons audio et vidéo sur notre chaîne YouTube et notre podcast.</p>
-        <ul>
-            <li><a href="#">Sermon du Sabbat 01 Mai 2025</a></li>
-            <li><a href="#">Sermon du Mercredi 22 Avril 2025</a></li>
-            <li><a href="#">Sermon du Vendredi 10 Avril 2025</a></li>
-        </ul>
-    </section>
+        <section id="sermons">
+            <h2 class="section-title">Sermons récents</h2>
+            <p>Retrouvez nos sermons audio et vidéo sur notre chaîne YouTube et notre podcast.</p>
+            <div class="sermons-list" style="margin-top: 25px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">L'amour inconditionnel de Dieu</h3>
+                    <p style="color: var(--gray); margin-bottom: 15px;">Prédicateur: Pasteur Jean Mbarga • Date: 01 Mai 2025</p>
+                    <div style="display: flex; gap: 15px;">
+                        <button style="background: var(--primary);"><i class="fas fa-play-circle"></i> Écouter</button>
+                        <button style="background: var(--secondary); color: var(--dark);"><i class="fas fa-download"></i> Télécharger</button>
+                    </div>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Vivre dans l'espérance</h3>
+                    <p style="color: var(--gray); margin-bottom: 15px;">Prédicateur: Ancien Samuel Nguimfack • Date: 22 Avril 2025</p>
+                    <div style="display: flex; gap: 15px;">
+                        <button style="background: var(--primary);"><i class="fas fa-play-circle"></i> Écouter</button>
+                        <button style="background: var(--secondary); color: var(--dark);"><i class="fas fa-download"></i> Télécharger</button>
+                    </div>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">La puissance de la prière</h3>
+                    <p style="color: var(--gray); margin-bottom: 15px;">Prédicateur: Pasteur Martin Tchoumi • Date: 10 Avril 2025</p>
+                    <div style="display: flex; gap: 15px;">
+                        <button style="background: var(--primary);"><i class="fas fa-play-circle"></i> Écouter</button>
+                        <button style="background: var(--secondary); color: var(--dark);"><i class="fas fa-download"></i> Télécharger</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="galerie">
-        <h2 class="section-title">Galerie Photos</h2>
-        <div class="gallery">
-            <img src="church1.jpg" alt="Photo de l'église 1">
-            <img src="church2.jpg" alt="Photo de l'église 2">
-            <img src="church3.jpg" alt="Photo de l'église 3">
-        </div>
-    </section>
+        <section id="galerie">
+            <h2 class="section-title">Galerie Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Culte du sabbat">
+                    <div class="caption">Culte du sabbat</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Baptême">
+                    <div class="caption">Cérémonie de baptême</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1530023367847-a683933f4172?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="École du sabbat">
+                    <div class="caption">École du sabbat</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581578021016-1cfc07559f61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Concert de louange">
+                    <div class="caption">Concert de louange</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1507835661098-4023c214f6c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Service communautaire">
+                    <div class="caption">Service communautaire</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1580339993512-4b1e5d0d7b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Mariage">
+                    <div class="caption">Célébration de mariage</div>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact">
-        <h2 class="section-title">Nous Contacter</h2>
-        <div class="contact-info">
-            <p><strong>Adresse :</strong> Rue Stade Omnisport Roumdé-Adjia, Face Daoula-Hôtel</p>
-            <p><strong>Téléphone :</strong> +237 697 81 84 73</p>
-        </div>
-        <iframe src="https://www.google.com/maps?q=Stade+Omnisport+Roumd%C3%A9-Adjia,+Garoua,+Cameroun&output=embed"></iframe>
+        <section id="contact">
+            <h2 class="section-title">Nous Contacter</h2>
+            <div class="contact-info">
+                <p><strong><i class="fas fa-map-marker-alt"></i> Adresse :</strong> Rue Stade Omnisport Roumdé-Adjia, Face Daoula-Hôtel, Garoua, Cameroun</p>
+                <p><strong><i class="fas fa-phone"></i> Téléphone :</strong> +237 697 81 84 73</p>
+                <p><strong><i class="fas fa-envelope"></i> Email :</strong> contact@egliseadventistegaroua.org</p>
+            </div>
+            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15797.34973442704!2d13.395578931250005!3d9.30118139999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10b06b9c1f0c0a0b%3A0x9b8d1e8b3d8e0b0d!2sStade%20Omnisport%20Roumd%C3%A9-Adjia!5e0!3m2!1sfr!2scm!4v1686089867891!5m2!1sfr!2scm" allowfullscreen="" loading="lazy"></iframe>
 
-        <h3>Envoyez-nous un message</h3>
-        <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Votre nom" required>
-            <input type="email" name="email" placeholder="Votre email" required>
-            <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+            <h3 style="margin: 30px 0 15px; font-size: 1.5rem; color: var(--primary);">Envoyez-nous un message</h3>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Votre nom complet</label>
+                    <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Votre adresse email</label>
+                    <input type="email" id="email" name="email" placeholder="Votre email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Sujet du message</label>
+                    <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Votre message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Votre message" required></textarea>
+                </div>
+                
+                <button type="submit"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+            </form>
+        </section>
 
-    <section id="dons">
-        <h2 class="section-title">Faire un don</h2>
-        <p>Votre générosité nous aide à continuer notre mission. Vous pouvez faire un don via :</p>
-        <ul>
-            <li>Virement bancaire : Compte XYZ, Banque ABC</li>
-            <li>Mobile Money : 237 697 818 473</li>
-            <li>Chèque à l’ordre de "Eglise Adventiste de Garoua-Centre"</li>
-        </ul>
-    </section>
+        <section id="dons">
+            <h2 class="section-title">Soutenir notre église</h2>
+            <p>Votre générosité nous aide à continuer notre mission. Vous pouvez faire un don via :</p>
+            <div class="donation-methods" style="margin-top: 25px;">
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-university"></i> Virement bancaire</h3>
+                    <p><strong>Nom du compte :</strong> Eglise Adventiste Garoua-Centre</p>
+                    <p><strong>Banque :</strong> Afriland First Bank</p>
+                    <p><strong>Numéro de compte :</strong> 237 000 12345 01</p>
+                    <p><strong>Code IBAN :</strong> CM21 1000 2000 3000 4000 5000 69</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-mobile-alt"></i> Mobile Money</h3>
+                    <p style="margin-bottom: 15px;">Vous pouvez envoyer votre don directement à l'un de nos numéros :</p>
+                    <ul style="list-style: none;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>MTN Mobile Money :</strong> 237 697 818 473</li>
+                        <li style="padding: 8px 0;"><strong>Orange Money :</strong> 237 655 123 456</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-money-check"></i> Don en personne</h3>
+                    <p>Vous pouvez également apporter votre don directement à l'église le jour du culte ou prendre rendez-vous avec notre trésorier.</p>
+                    <p style="margin-top: 15px; font-style: italic;">"Donnez, et il vous sera donné: on versera dans votre sein une bonne mesure, serrée, secouée et qui déborde; car on vous mesurera avec la mesure dont vous vous serez servis." (Luc 6:38)</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2025 Eglise Adventiste de Garoua-Centre. Tous droits réservés.</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Notre église</h3>
+                <ul>
+                    <li><a href="#apropos"><i class="fas fa-chevron-right"></i> À propos de nous</a></li>
+                    <li><a href="#horaires"><i class="fas fa-chevron-right"></i> Horaires de culte</a></li>
+                    <li><a href="#sermons"><i class="fas fa-chevron-right"></i> Sermons</a></li>
+                    <li><a href="#galerie"><i class="fas fa-chevron-right"></i> Galerie photos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Ministères</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Jeunesse Adventiste</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> École du Sabbat</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ministère des Femmes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Actions sociales</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Rue Stade Omnisport Roumdé-Adjia</a></li>
+                    <li><a href="tel:+237697818473"><i class="fas fa-phone"></i> +237 697 81 84 73</a></li>
+                    <li><a href="mailto:contact@egliseadventistegaroua.org"><i class="fas fa-envelope"></i> contact@egliseadventistegaroua.org</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Église Adventiste du Septième Jour de Garoua-Centre. Tous droits réservés.</p>
+        </div>
     </footer>
+    
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu hamburger pour mobile
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            hamburger.innerHTML = menu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fermer le menu au clic sur un lien
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Bouton retour en haut
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animation au défilement
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
